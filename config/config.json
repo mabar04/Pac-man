@@ -1,0 +1,13 @@
+
+{
+    "window": {
+        "width": 800,
+        "height": 600,
+        "title": "Pac-Man"
+    },
+    "game": {
+        "tick_rate": 60,
+        "lives": 3,
+        "score": 0
+    }
+}
