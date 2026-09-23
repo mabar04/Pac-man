@@ -1,10 +1,11 @@
 PYTHON ?= python3
 APP = pac-man.py
+CONFIG = config/config.json
 
 .PHONY: run test lint clean
 
 run:
-	$(PYTHON) $(APP)
+	$(PYTHON) $(APP) $(CONFIG)
 
 test:
 	pytest -q
