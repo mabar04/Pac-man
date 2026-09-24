@@ -60,5 +60,11 @@ class ParserClass:
                 print(f"Missing value for '{k}' key")
             if isinstance(v, list) and v == []:
                 print(f"Missing value for '{k}' key")
-            if k == "level_array" and not isinstance(v, []):
-                print(f"{k} should be an array")
+            if k == "level_array":
+                if not isinstance(v, []):
+                    print(f"{k} should be an array")
+                for index, value in enumerate():
+                    try:
+                        int(value)
+                    except ValueError:
+                        print(f"values inside {k} should be an int")
