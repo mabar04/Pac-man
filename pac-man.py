@@ -1,6 +1,8 @@
 import sys
 from src import ParsingError, ParserClass, MazeLoader, MazeAdapter
 from maze_generator.mazegenerator import MazeGenerator
+from src.ui.screens.main_menu import MainMenu
+from src.ui.screens.maze_render import MazeRender
 
 
 def main() -> None:
@@ -9,10 +11,11 @@ def main() -> None:
     parser = ParserClass(sys.argv[1])
     parser.validate(parser.load())
     maze_loader = MazeLoader(5, 5, 20, MazeGenerator=MazeGenerator)
-    maze = maze_loader.generate_maze()
-    print(maze)
-    MazeAdapter(maze).create_cells()
-
+    maze_loader.generate_maze()
+    maze_adapter = MazeAdapter(maze_loader)
+    maze_adapter.create_cells()
+    MazeRender().maze_render(maze_adapter.cells)
+    # MazeRender()
 
 if __name__ == "__main__":
     # try:
