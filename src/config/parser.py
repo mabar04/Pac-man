@@ -13,12 +13,16 @@ class ParserClass:
         self.default_values = {
             "highscore_filename": "highscores.json",
             "level_array": [
-                {"1": "(600, 700)"},
-                {"2": "(200, 500)"},
-                {"3": "(600, 700)"},
-                {"4": "(600, 700)"},
-                {"5": "(600, 700)"},
-                {"6": "(600, 700)"}
+                {"1": "(40, 40)"},
+                {"2": "(40, 40)"},
+                {"3": "(40, 40)"},
+                {"4": "(40, 40)"},
+                {"5": "(40, 40)"},
+                {"6": "(40, 40)"},
+                {"7": "(40, 40)"},
+                {"8": "(40, 40)"},
+                {"9": "(40, 40)"},
+                {"10": "(40, 40)"}
             ],
             "lives": 3,
             "pacgum": 42,
@@ -59,7 +63,6 @@ class ParserClass:
 
     def validate(self, config: Dict[str, Any]) -> dict[str, Any]:
         self.values_validation(config, self.default_values)
-        print(self.default_values)
         return self.default_values
 
     def values_validation(self, config: Dict[str, Any],
