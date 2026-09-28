@@ -10,10 +10,12 @@ class MazeAdapter():
 
     def create_cells(self):
         for height_coord in self.mazeLoader.maze:
+            cell_list = []
             for width_coord in height_coord:
                 cell = Cell()
                 cell.create_cell(width_coord)
-                self.cells.append(cell)
+                cell_list.append(cell)
+            self.cells.append(cell_list)
 
     def get_cell(self, w_index, h_index):
         return self.cells[h_index, w_index]

@@ -10,12 +10,13 @@ def main() -> None:
         raise ParsingError("Parsing Error: Missing/Extra arguments")
     parser = ParserClass(sys.argv[1])
     parser.validate(parser.load())
-    maze_loader = MazeLoader(5, 5, 20, MazeGenerator=MazeGenerator)
+    maze_loader = MazeLoader(20, 20, 20, MazeGenerator=MazeGenerator)
     maze_loader.generate_maze()
     maze_adapter = MazeAdapter(maze_loader)
     maze_adapter.create_cells()
+    # MainMenu().render_menu()
     MazeRender().maze_render(maze_adapter.cells)
-    # MazeRender()
+
 
 if __name__ == "__main__":
     # try:
