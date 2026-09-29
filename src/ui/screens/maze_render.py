@@ -4,20 +4,18 @@ from ...maze.cell import Cell
 
 class MazeRender():
 
-    @classmethod
-    def calculate_cell_size(cls, maze_width, maze_height, cells):
+    def calculate_cell_size(self, maze_width, maze_height, cells):
         cell_height = maze_height // len(cells)
         cell_width = maze_width // len(cells[0])
         return (cell_width, cell_height)
 
-    @classmethod
-    def maze_render(cls, cells: list[list[Cell]], screen):
+    def maze_render(self, cells: list[list[Cell]], screen):
 
         WIDTH = screen.get_width()
         HEIGHT = screen.get_height()
         screen.fill((0, 0, 0))
-        cell_width, cell_height = cls.calculate_cell_size(WIDTH, HEIGHT,
-                                                          cells)
+        cell_width, cell_height = self.calculate_cell_size(WIDTH, HEIGHT,
+                                                           cells)
         LIGHT_BLUE = (50, 100, 220)
         YELLOW = (255, 255, 0)
         start_width = 0

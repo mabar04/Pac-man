@@ -13,12 +13,17 @@ class Window:
 
     def window_render(self, cells):
         pygame.init()
-        screen = pygame.display.set_mode((1100, 1000))
-        game_rect = pygame.Rect(50, 50, 1000, 900)
+        screen_width, screen_height = pygame.display.get_desktop_sizes()[0]
+        screen = pygame.display.set_mode(((screen_width * 0.6),
+                                          (screen_height * 0.8)))
+        game_rect = pygame.Rect(100, 100, screen.get_width() - 200,
+                                screen.get_height() - 200)
         game_surface = pygame.Surface(game_rect.size)
         pygame.display.set_caption("Pac-Man")
         clock = pygame.time.Clock()
-        state = "MAZE"
+        state = "MENU"
+        pause_render = PauseScreen()
+        maze_render = MazeRender()
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -28,17 +33,17 @@ class Window:
                     if event.key == pygame.K_SPACE:
                         if state == "PAUSE":
                             state = "MAZE"
-                        else:
+                        elif state == "MAZE":
                             state = "PAUSE"
                             if event.type != pygame.K_SPACE:
                                 pygame.event.wait()
-                                PauseScreen().rendered = False
+                                pause_render.rendered = False
             if state == "MENU":
-                MainMenu().render_menu(cells, game_surface)
+                MainMenu().render_menu(game_surface)
             elif state == "MAZE":
-                MazeRender().maze_render(cells, game_surface)
+                maze_render.maze_render(cells, game_surface)
             elif state == "PAUSE":
-                PauseScreen().pause_render(game_surface)
+                pause_render.pause_render(game_surface)
             elif state == "VICTORY":
                 VictoryScreen().victory_render(game_surface)
             elif state == "INSTRUCTIONS":
