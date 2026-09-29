@@ -1,5 +1,6 @@
 class Instructions:
     """Instructions screen placeholder."""
 
-    def __init__(self):
-        self.title = "Instructions"
+    @classmethod
+    def Instructions_render(cls):
+        pass

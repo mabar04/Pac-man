@@ -1,5 +1,9 @@
+import pygame
+
+
 class VictoryScreen:
     """Victory screen placeholder."""
 
-    def __init__(self):
-        self.title = "Victory"
+    @classmethod
+    def victory_render(cls, screen):
+        pass
