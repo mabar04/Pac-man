@@ -11,7 +11,7 @@ class Window:
         self.height = height
         self.title = title
 
-    def window_render(self, cells):
+    def window_render(self, cells, pacgums):
         pygame.init()
         screen_width, screen_height = pygame.display.get_desktop_sizes()[0]
         screen = pygame.display.set_mode(((screen_width * 0.6),
@@ -21,7 +21,7 @@ class Window:
         game_surface = pygame.Surface(game_rect.size)
         pygame.display.set_caption("Pac-Man")
         clock = pygame.time.Clock()
-        state = "MENU"
+        state = "MAZE"
         pause_render = PauseScreen()
         maze_render = MazeRender()
         while True:
@@ -41,7 +41,7 @@ class Window:
             if state == "MENU":
                 MainMenu().render_menu(game_surface)
             elif state == "MAZE":
-                maze_render.maze_render(cells, game_surface)
+                maze_render.maze_render(cells, game_surface, pacgums)
             elif state == "PAUSE":
                 pause_render.pause_render(game_surface)
             elif state == "VICTORY":

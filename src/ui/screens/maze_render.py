@@ -9,7 +9,7 @@ class MazeRender():
         cell_width = maze_width // len(cells[0])
         return (cell_width, cell_height)
 
-    def maze_render(self, cells: list[list[Cell]], screen):
+    def maze_render(self, cells: list[list[Cell]], screen, pacgums):
 
         WIDTH = screen.get_width()
         HEIGHT = screen.get_height()
@@ -18,11 +18,18 @@ class MazeRender():
                                                            cells)
         LIGHT_BLUE = (50, 100, 220)
         YELLOW = (255, 255, 0)
+        LIGHT_ORANGE = (245, 150, 78)
         start_width = 0
         start_height = 0
         for cell_array in cells:
             start_width = 0
             for cell in cell_array:
+                if cell in pacgums:
+                    pygame.draw.circle(screen, YELLOW, (start_width
+                                                        + (cell_width // 2),
+                                                        start_height +
+                                                        (cell_height // 2)),
+                                       radius=(cell_width // 8))
                 if cell.top_wall is True:
                     pygame.draw.line(screen, LIGHT_BLUE,
                                      (start_width, start_height),
@@ -52,7 +59,7 @@ class MazeRender():
                         cell.bottom_wall, cell.right_wall]) is True:
                     pygame.draw.rect(
                         screen,
-                        YELLOW,
+                        LIGHT_ORANGE,
                         (start_width, start_height, cell_width,
                             cell_height)
                     )

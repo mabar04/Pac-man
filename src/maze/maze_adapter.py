@@ -59,10 +59,14 @@ class MazeAdapter():
 
     def get_all_walkable(self):
         walkable_cells = []
-        for cell in self.cells:
-            if False in any([cell.bottom_wall, cell.left_wall,
-                             cell.right_wall, cell.top_wall]):
-                walkable_cells.append(cell)
+        for cell_row in self.cells:
+            for cell in cell_row:
+                bool_array = [cell.bottom_wall, cell.left_wall,
+                              cell.right_wall, cell.top_wall]
+                player_spawn_x, player_spawn_y = self.player_spawn()
+                if (not all(bool_array) and cell !=
+                        self.cells[player_spawn_y][player_spawn_x]):
+                    walkable_cells.append(cell)
         return walkable_cells
 
     def ghost_spawns(self):
@@ -71,4 +75,4 @@ class MazeAdapter():
                 (self.mazeLoader.width,  self.mazeLoader.height)]
 
     def player_spawn(self):
-        return (self.mazeLoader.width / 2, self.mazeLoader.height / 2)
+        return (self.mazeLoader.width // 2, self.mazeLoader.height // 2)
